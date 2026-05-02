@@ -28,6 +28,9 @@ command.shell-wrapper
 secret.env-value
 prompt-injection.description
 command.unpinned-package
+command.privileged-container
+command.docker-socket-mount
+command.host-root-bind-mount
 ```
 
 Terminal scan output:
@@ -38,6 +41,9 @@ high     shell-install     command.shell-wrapper
 high     shell-install     secret.env-value
 medium   shell-install     prompt-injection.description
 medium   unpinned-package  command.unpinned-package
+high     docker-control    command.privileged-container
+high     docker-control    command.docker-socket-mount
+high     docker-control    command.host-root-bind-mount
 ```
 
 Render a shareable report:
@@ -60,7 +66,15 @@ mcp-vet explain command.shell-wrapper
 - likely secrets in MCP config env values;
 - prompt-injection-like phrases in tool metadata;
 - unpinned package launches through `npx` or `uvx`;
+- Docker or Podman servers launched with `--privileged`;
+- Docker or Podman servers that mount the Docker control socket;
+- Docker or Podman servers that bind-mount the host root filesystem;
 - missing commands and commands not found on `PATH`.
+
+The container checks are intentionally high-severity. Docker documents that privileged containers receive broad host access, and Docker's daemon/socket security guidance treats access to the daemon as host-sensitive control-plane access:
+[docker run privileged mode](https://docs.docker.com/engine/containers/run/#runtime-privilege-and-linux-capabilities),
+[Docker bind mount considerations](https://docs.docker.com/engine/storage/bind-mounts/#considerations-and-constraints),
+[Docker daemon socket security](https://docs.docker.com/engine/security/#docker-daemon-attack-surface).
 
 ## Scope
 

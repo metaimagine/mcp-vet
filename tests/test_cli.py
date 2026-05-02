@@ -42,6 +42,22 @@ def test_scan_config_prints_findings(tmp_path: Path):
     assert "command.shell-wrapper" in result.stdout
 
 
+def test_explain_has_docker_socket_guidance():
+    result = runner.invoke(app, ["explain", "command.docker-socket-mount"])
+
+    assert result.exit_code == 0
+    assert "No built-in explanation" not in result.stdout
+    assert "Docker socket" in result.stdout
+
+
+def test_explain_has_host_root_bind_mount_guidance():
+    result = runner.invoke(app, ["explain", "command.host-root-bind-mount"])
+
+    assert result.exit_code == 0
+    assert "No built-in explanation" not in result.stdout
+    assert "host root" in result.stdout
+
+
 def test_python_module_entrypoint_runs_scan(tmp_path: Path):
     config_path = tmp_path / "config.json"
     config_path.write_text(

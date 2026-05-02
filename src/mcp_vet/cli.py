@@ -70,6 +70,9 @@ def explain(finding_id: str) -> None:
     explanations = {
         "command.shell-wrapper": "Shell wrappers can hide arbitrary command chains. Use a direct executable with fixed arguments.",
         "command.unpinned-package": "Unpinned remote packages can change between runs. Pin versions or use a reviewed local checkout.",
+        "command.privileged-container": "Privileged containers receive broad host-level access. Remove --privileged and grant only required mounts, devices, or capabilities.",
+        "command.docker-socket-mount": "A Docker socket mount can let an MCP server control containers on the host. Avoid exposing it to agent-controlled tools.",
+        "command.host-root-bind-mount": "A host root bind mount exposes the full filesystem to the MCP server container. Mount only the required directory, preferably read-only.",
         "secret.env-value": "Secrets in MCP configs are easy to commit or share. Move them to your shell environment or secret manager.",
         "prompt-injection.description": "Tool metadata is visible to agents. Remove text that tries to override the agent's instructions.",
         "metadata.missing-command": "Every MCP server needs a command field that launches the server.",

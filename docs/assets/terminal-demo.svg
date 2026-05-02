@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="920" height="420" viewBox="0 0 920 420" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="520" viewBox="0 0 920 520" role="img" aria-labelledby="title desc">
   <title id="title">mcp-vet terminal demo</title>
   <desc id="desc">A terminal screenshot showing mcp-vet detecting risky MCP configuration findings.</desc>
-  <rect width="920" height="420" rx="8" fill="#101418"/>
+  <rect width="920" height="520" rx="8" fill="#101418"/>
   <rect x="0" y="0" width="920" height="42" rx="8" fill="#1d232b"/>
   <circle cx="24" cy="21" r="6" fill="#ff5f56"/>
   <circle cx="44" cy="21" r="6" fill="#ffbd2e"/>
@@ -13,6 +13,9 @@
   <text x="28" y="200" fill="#ff7b72" font-family="Menlo, Consolas, monospace" font-size="17">high    shell-install     secret.env-value</text>
   <text x="28" y="234" fill="#d29922" font-family="Menlo, Consolas, monospace" font-size="17">medium  shell-install     prompt-injection.description</text>
   <text x="28" y="268" fill="#d29922" font-family="Menlo, Consolas, monospace" font-size="17">medium  unpinned-package  command.unpinned-package</text>
-  <text x="28" y="324" fill="#9aa7b2" font-family="Menlo, Consolas, monospace" font-size="16">4 findings. Run: mcp-vet explain command.shell-wrapper</text>
-  <text x="28" y="358" fill="#9aa7b2" font-family="Menlo, Consolas, monospace" font-size="16">Reports: markdown | json | sarif</text>
+  <text x="28" y="302" fill="#ff7b72" font-family="Menlo, Consolas, monospace" font-size="17">high    docker-control    command.privileged-container</text>
+  <text x="28" y="336" fill="#ff7b72" font-family="Menlo, Consolas, monospace" font-size="17">high    docker-control    command.docker-socket-mount</text>
+  <text x="28" y="370" fill="#ff7b72" font-family="Menlo, Consolas, monospace" font-size="17">high    docker-control    command.host-root-bind-mount</text>
+  <text x="28" y="426" fill="#9aa7b2" font-family="Menlo, Consolas, monospace" font-size="16">7 findings. Run: mcp-vet explain command.host-root-bind-mount</text>
+  <text x="28" y="460" fill="#9aa7b2" font-family="Menlo, Consolas, monospace" font-size="16">Reports: markdown | json | sarif</text>
 </svg>

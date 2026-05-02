@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- Detection for MCP servers launched through privileged Docker or Podman containers.
+- Detection for MCP servers that mount the Docker control socket into containers.
+- Detection for MCP servers that bind-mount the host root filesystem into containers.
+- Built-in `explain` guidance for the new container permission findings.
+
 ## v0.1.0 - 2026-05-02
 
 Initial public release of `mcp-vet`.
