@@ -83,3 +83,7 @@ def _load_requested_configs(config: Path | None):
     if not paths:
         raise typer.BadParameter("No MCP configs found. Pass --config PATH to scan a specific file.")
     return [load_config(path) for path in paths]
+
+
+if __name__ == "__main__":
+    app()

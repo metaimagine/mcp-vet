@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "local-docs": {
+      "command": "python",
+      "args": ["-m", "local_docs_mcp", "--root", "/Users/example/docs"],
+      "env": {
+        "MCP_SAFE_MODE": "1"
+      }
+    }
+  }
+}

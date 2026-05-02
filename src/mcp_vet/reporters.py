@@ -46,7 +46,7 @@ def render_markdown(report: ScanReport) -> str:
 
 
 def render_json(report: ScanReport) -> str:
-    return json.dumps(report.model_dump(mode="json"), indent=2, sort_keys=True)
+    return json.dumps(_safe_report_dump(report), indent=2, sort_keys=True)
 
 
 def render_sarif(report: ScanReport) -> str:
@@ -95,3 +95,29 @@ def _sarif_level(severity: str) -> str:
 
 def _escape(value: str) -> str:
     return value.replace("|", "\\|").replace("\n", " ")
+
+
+def _safe_report_dump(report: ScanReport) -> dict[str, object]:
+    payload = report.model_dump(mode="json")
+    for config in payload.get("configs", []):
+        if isinstance(config, dict):
+            config["raw"] = _redact_env_blocks(config.get("raw"))
+            for server in config.get("servers", []):
+                if isinstance(server, dict):
+                    server["env"] = {key: "<redacted>" for key in server.get("env", {})}
+                    server["raw"] = _redact_env_blocks(server.get("raw"))
+    return payload
+
+
+def _redact_env_blocks(value: object) -> object:
+    if isinstance(value, dict):
+        redacted = {}
+        for key, item in value.items():
+            if key == "env" and isinstance(item, dict):
+                redacted[key] = {env_key: "<redacted>" for env_key in item}
+            else:
+                redacted[key] = _redact_env_blocks(item)
+        return redacted
+    if isinstance(value, list):
+        return [_redact_env_blocks(item) for item in value]
+    return value

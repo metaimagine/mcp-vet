@@ -1,4 +1,6 @@
-from mcp_vet.models import Finding, ScanReport, Severity
+from pathlib import Path
+
+from mcp_vet.models import Finding, MCPConfig, MCPServer, ScanReport, Severity
 from mcp_vet.reporters import render_json, render_markdown, render_sarif
 
 
@@ -29,6 +31,38 @@ def test_render_json_includes_findings():
 
     assert '"findings"' in output
     assert "command.shell-wrapper" in output
+
+
+def test_render_json_redacts_config_env_values():
+    report = ScanReport(
+        configs=[
+            MCPConfig(
+                path=Path("config.json"),
+                servers=[
+                    MCPServer(
+                        name="secret-server",
+                        command="node",
+                        env={"OPENAI_API_KEY": "sk-test-secret-value"},
+                        raw={"env": {"OPENAI_API_KEY": "sk-test-secret-value"}},
+                    )
+                ],
+                raw={
+                    "mcpServers": {
+                        "secret-server": {
+                            "command": "node",
+                            "env": {"OPENAI_API_KEY": "sk-test-secret-value"},
+                        }
+                    }
+                },
+            )
+        ]
+    )
+
+    output = render_json(report)
+
+    assert "sk-test-secret-value" not in output
+    assert "OPENAI_API_KEY" in output
+    assert "<redacted>" in output
 
 
 def test_render_sarif_has_expected_schema_key():
