@@ -8,6 +8,8 @@ Local MCP security and configuration doctor for AI agents.
 
 `mcp-vet` scans MCP client configs before you hand them to Claude Desktop, Cursor, Codex, Gemini CLI, or another agent client. It catches risky shell wrappers, likely secrets, prompt-injection-like tool metadata, unpinned package launches, and broken commands.
 
+![mcp-vet terminal demo](docs/assets/terminal-demo.svg)
+
 ## Why
 
 MCP makes agents useful by giving them tools. It also makes local configs more sensitive: one risky command, leaked token, or poisoned tool description can change what an agent is allowed to do. `mcp-vet` gives you a fast local review before you enable a server.
@@ -63,6 +65,11 @@ mcp-vet explain command.shell-wrapper
 ## Scope
 
 V0 is a local static scanner. It does not sandbox tools, inspect remote packages, or claim to prove that an MCP server is safe. It gives fast, actionable findings before you enable a server.
+
+## Project Links
+
+- [Changelog](CHANGELOG.md)
+- [Contributing](CONTRIBUTING.md)
 
 ## License
 

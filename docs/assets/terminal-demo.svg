@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="420" viewBox="0 0 920 420" role="img" aria-labelledby="title desc">
+  <title id="title">mcp-vet terminal demo</title>
+  <desc id="desc">A terminal screenshot showing mcp-vet detecting risky MCP configuration findings.</desc>
+  <rect width="920" height="420" rx="8" fill="#101418"/>
+  <rect x="0" y="0" width="920" height="42" rx="8" fill="#1d232b"/>
+  <circle cx="24" cy="21" r="6" fill="#ff5f56"/>
+  <circle cx="44" cy="21" r="6" fill="#ffbd2e"/>
+  <circle cx="64" cy="21" r="6" fill="#27c93f"/>
+  <text x="84" y="27" fill="#9aa7b2" font-family="Menlo, Consolas, monospace" font-size="14">mcp-vet scan --config examples/risky-config.json</text>
+  <text x="28" y="86" fill="#e6edf3" font-family="Menlo, Consolas, monospace" font-size="18">$ mcp-vet scan --config examples/risky-config.json</text>
+  <text x="28" y="128" fill="#7ee787" font-family="Menlo, Consolas, monospace" font-size="20" font-weight="700">mcp-vet findings</text>
+  <text x="28" y="166" fill="#ff7b72" font-family="Menlo, Consolas, monospace" font-size="17">high    shell-install     command.shell-wrapper</text>
+  <text x="28" y="200" fill="#ff7b72" font-family="Menlo, Consolas, monospace" font-size="17">high    shell-install     secret.env-value</text>
+  <text x="28" y="234" fill="#d29922" font-family="Menlo, Consolas, monospace" font-size="17">medium  shell-install     prompt-injection.description</text>
+  <text x="28" y="268" fill="#d29922" font-family="Menlo, Consolas, monospace" font-size="17">medium  unpinned-package  command.unpinned-package</text>
+  <text x="28" y="324" fill="#9aa7b2" font-family="Menlo, Consolas, monospace" font-size="16">4 findings. Run: mcp-vet explain command.shell-wrapper</text>
+  <text x="28" y="358" fill="#9aa7b2" font-family="Menlo, Consolas, monospace" font-size="16">Reports: markdown | json | sarif</text>
+</svg>
